@@ -94,7 +94,7 @@ const Progress: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-gray-50">
-            <Navbar progressPercentage={overallPercentage} />
+            <Navbar />
             <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div className="space-y-6">
                     <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
