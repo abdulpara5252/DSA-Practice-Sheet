@@ -25,8 +25,20 @@ interface GroupedByChapter {
     [chapter: string]: GroupedByTopic;
 }
 
+const groupProblemsByChapter = (problems: Problem[] = []): GroupedByChapter => {
+    return problems.reduce((acc, problem) => {
+        if (!acc[problem.chapter]) {
+            acc[problem.chapter] = {};
+        }
+        if (!acc[problem.chapter][problem.topic]) {
+            acc[problem.chapter][problem.topic] = [];
+        }
+        acc[problem.chapter][problem.topic].push(problem);
+        return acc;
+    }, {} as GroupedByChapter);
+};
+
 const Dashboard: React.FC = () => {
-    const [problems, setProblems] = useState<Problem[]>([]);
     const [groupedProblems, setGroupedProblems] = useState<GroupedByChapter>({});
     const [completedProblems, setCompletedProblems] = useState<string[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
@@ -46,10 +58,9 @@ const Dashboard: React.FC = () => {
                     })
                 ]);
 
-                const problemsData = problemsRes.data.problems || problemsRes.data;
-                const groupedData = problemsRes.data.grouped || {};
+                const problemsData = problemsRes.data.problems || problemsRes.data || [];
+                const groupedData = problemsRes.data.grouped || groupProblemsByChapter(problemsData);
 
-                setProblems(problemsData);
                 setGroupedProblems(groupedData);
                 setCompletedProblems(progressRes.data);
                 setLoading(false);
