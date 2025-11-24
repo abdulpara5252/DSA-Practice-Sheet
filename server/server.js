@@ -38,9 +38,9 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/dsa-sheet')
             try {
                 const seedDB = require('./seed');
                 await seedDB(false); // false = don't close connection
-                console.log('✅ Auto-seeding completed');
+                console.log(' Auto-seeding completed');
             } catch (error) {
-                console.error('⚠️ Auto-seeding failed, continuing anyway:', error.message);
+                console.error('Auto-seeding failed, continuing anyway:', error.message);
             }
         }
     })

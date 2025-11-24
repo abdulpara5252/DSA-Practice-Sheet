@@ -3,6 +3,7 @@ import axios from 'axios';
 import ProblemRow from '../components/ProblemRow';
 import Navbar from '../components/Navbar';
 import Accordion from '../components/Accordion';
+import { API_URL } from '@/lib/config';
 
 interface Problem {
     _id: string;
@@ -52,8 +53,8 @@ const Dashboard: React.FC = () => {
                 }
 
                 const [problemsRes, progressRes] = await Promise.all([
-                    axios.get('http://localhost:5000/api/problems'),
-                    axios.get('http://localhost:5000/api/problems/progress', {
+                    axios.get(`${API_URL}/problems`),
+                    axios.get(`${API_URL}/problems/progress`, {
                         headers: { 'x-auth-token': token }
                     })
                 ]);
@@ -78,7 +79,7 @@ const Dashboard: React.FC = () => {
     const handleToggle = async (problemId: string) => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.post('http://localhost:5000/api/problems/toggle',
+            const response = await axios.post(`${API_URL}/problems/toggle`,
                 { problemId },
                 { headers: { 'x-auth-token': token } }
             );

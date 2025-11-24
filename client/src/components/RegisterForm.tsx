@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { API_URL } from '@/lib/config'
 
 interface RegisterFormProps {
   setIsAuthenticated: (auth: boolean) => void;
@@ -37,7 +38,7 @@ const RegisterForm = ({ setIsAuthenticated }: RegisterFormProps) => {
     }
 
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/register', {
+      const res = await axios.post(`${API_URL}/auth/register`, {
         username: formData.username,
         password: formData.password
       })

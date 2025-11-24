@@ -7,6 +7,7 @@ import Progress from './pages/Progress';
 import AuthCallback from './pages/AuthCallback';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_URL } from '@/lib/config';
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -18,7 +19,7 @@ function App() {
             if (token) {
                 try {
                     // Verify token is valid by making a request
-                    await axios.get('http://localhost:5000/api/problems/progress', {
+                    await axios.get(`${API_URL}/problems/progress`, {
                         headers: { 'x-auth-token': token }
                     });
                     setIsAuthenticated(true);

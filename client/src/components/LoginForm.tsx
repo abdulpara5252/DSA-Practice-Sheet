@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { API_URL } from '@/lib/config'
 
 interface LoginFormProps {
   setIsAuthenticated: (auth: boolean) => void;
@@ -27,7 +28,7 @@ const LoginForm = ({ setIsAuthenticated }: LoginFormProps) => {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', formData)
+      const res = await axios.post(`${API_URL}/auth/login`, formData)
       localStorage.setItem('token', res.data.token)
       setIsAuthenticated(true)
       navigate('/profile')

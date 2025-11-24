@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
+import { API_URL } from '@/lib/config';
 
 interface User {
     username?: string;
@@ -23,7 +24,7 @@ const Profile: React.FC = () => {
                     return;
                 }
 
-                const response = await axios.get('http://localhost:5000/api/auth/user', {
+                const response = await axios.get(`${API_URL}/auth/user`, {
                     headers: { 'x-auth-token': token }
                 });
 

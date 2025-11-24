@@ -1,12 +1,10 @@
 import { Button } from '@/components/ui/button'
+import { API_BASE_URL } from '@/lib/config'
 
 const GoogleSignInButton = () => {
-    const apibaseUrl = 'https://dsa-practice-sheet-api.vercel.app' 
-    const apiBaseUrl = apibaseUrl ?? 'http://localhost:5000'
-      const handleGoogleSignIn = () => {
-      window.location.href = 'http://localhost:5000/api/auth/google'
-      window.location.href = `${apiBaseUrl}/api/auth/google`
-        }
+  const handleGoogleSignIn = () => {
+    window.location.href = `${API_BASE_URL}/api/auth/google`
+  }
 
   return (
     <Button

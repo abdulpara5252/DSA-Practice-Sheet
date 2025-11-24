@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
+import { API_URL } from '@/lib/config';
 
 interface Problem {
     _id: string;
@@ -24,8 +25,8 @@ const Progress: React.FC = () => {
                 }
 
                 const [problemsRes, progressRes] = await Promise.all([
-                    axios.get('http://localhost:5000/api/problems'),
-                    axios.get('http://localhost:5000/api/problems/progress', {
+                    axios.get(`${API_URL}/problems`),
+                    axios.get(`${API_URL}/problems/progress`, {
                         headers: { 'x-auth-token': token }
                     })
                 ]);
