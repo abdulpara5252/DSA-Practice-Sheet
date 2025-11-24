@@ -45,7 +45,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ setIsAuthenticated }) => {
                             <Separator className='flex-1' />
                         </div>
 
-                        <GoogleSignInButton setIsAuthenticated={setIsAuthenticated} />
+                        <GoogleSignInButton />
                     </div>
                 </CardContent>
             </Card>

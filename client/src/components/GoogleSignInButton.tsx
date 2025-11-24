@@ -1,14 +1,6 @@
 import { Button } from '@/components/ui/button'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
 
-interface GoogleSignInButtonProps {
-  setIsAuthenticated: (auth: boolean) => void;
-}
-
-const GoogleSignInButton = ({ setIsAuthenticated }: GoogleSignInButtonProps) => {
-  const navigate = useNavigate()
-
+const GoogleSignInButton = () => {
   const handleGoogleSignIn = () => {
     // Redirect to backend Google OAuth endpoint
     window.location.href = 'http://localhost:5000/api/auth/google'
