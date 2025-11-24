@@ -1,10 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 
-interface NavbarProps {
-    progressPercentage: number;
-}
-
-const Navbar: React.FC<NavbarProps> = ({ progressPercentage }) => {
+const Navbar: React.FC = () => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -12,7 +8,6 @@ const Navbar: React.FC<NavbarProps> = ({ progressPercentage }) => {
         navigate('/login');
     };
 
-    const cappedProgress = Math.min(Math.max(progressPercentage, 0), 100);
 
     return (
         <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
