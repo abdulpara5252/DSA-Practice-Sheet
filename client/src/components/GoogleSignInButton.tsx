@@ -1,10 +1,11 @@
 import { Button } from '@/components/ui/button'
 
 const GoogleSignInButton = () => {
-  const handleGoogleSignIn = () => {
-    // Redirect to backend Google OAuth endpoint
-    window.location.href = 'http://localhost:5000/api/auth/google'
-  }
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:5000'
+      const handleGoogleSignIn = () => {
+      window.location.href = 'http://localhost:5000/api/auth/google'
+      window.location.href = `${apiBaseUrl}/api/auth/google`
+        }
 
   return (
     <Button
