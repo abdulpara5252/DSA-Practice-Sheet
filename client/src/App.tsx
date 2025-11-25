@@ -19,7 +19,7 @@ function App() {
             if (token) {
                 try {
                     // Verify token is valid by making a request
-                    await axios.get(`${API_URL}/problems/progress`, {
+                    await axios.get(`${API_URL}api/problems/progress`, {
                         headers: { 'x-auth-token': token }
                     });
                     setIsAuthenticated(true);

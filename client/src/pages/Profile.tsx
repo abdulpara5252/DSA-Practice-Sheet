@@ -24,7 +24,7 @@ const Profile: React.FC = () => {
                     return;
                 }
 
-                const response = await axios.get(`${API_URL}/auth/user`, {
+                const response = await axios.get(`${API_URL}api/auth/user`, {
                     headers: { 'x-auth-token': token }
                 });
 
