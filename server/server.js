@@ -9,7 +9,6 @@ const passport = require('./config/passport');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
 // CORS configuration with support for multiple origins
 const allowedOrigins = [
     'http://localhost:5173',
@@ -19,13 +18,10 @@ const allowedOrigins = [
 
 app.use(cors({
     origin: function (origin, callback) {
-        // Allow requests with no origin (like mobile apps or curl requests)
         if (!origin) return callback(null, true);
 
-        // Normalize origin by removing trailing slash
         const normalizedOrigin = origin.replace(/\/$/, '');
 
-        // Check if the normalized origin is in the allowed list
         const isAllowed = allowedOrigins.some(allowed =>
             allowed.replace(/\/$/, '') === normalizedOrigin
         );
@@ -47,9 +43,9 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        secure: false, // Set to true in production with HTTPS
+        secure: false,
         httpOnly: true,
-        maxAge: 24 * 60 * 60 * 1000 // 24 hours
+        maxAge: 24 * 60 * 60 * 1000
     }
 }));
 app.use(passport.initialize());
@@ -60,7 +56,6 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/dsa-sheet')
     .then(async () => {
         console.log('MongoDB Connected');
 
-        // Auto-seed database in development mode (if AUTO_SEED is not set to 'false')
         if (process.env.NODE_ENV !== 'production' && process.env.AUTO_SEED !== 'false') {
             try {
                 const seedDB = require('./seed');
